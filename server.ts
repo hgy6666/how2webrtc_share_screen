@@ -6,6 +6,7 @@ import * as expressWs from "express-ws";
 import * as WebSocket from "ws";
 import { createServer } from "http";
 
+
 interface User {
   socket: WebSocket;
   name: string;
@@ -87,6 +88,11 @@ function handleMessage(socket: WebSocket, message: WebSocketMessage): void {
       forwardMessageToOtherPerson(sender, message);
       break;
 
+    case "webrtc_close":
+      console.log(`received answer from ${sender.name}`);
+      forwardMessageToOtherPerson(sender, message);
+      break;
+
     default:
       console.log("unknown message", message);
       break;
@@ -131,7 +137,7 @@ const wsApp = expressWs(app, server).app;
 wsApp.ws("/ws", handleSocketConnection);
 
 // start the server
-const port = process.env.PORT || 4000;
-server.listen(port, () => {
+const port = 4000; // process.env.PORT || 
+server.listen(port, '0.0.0.0', () => {
   console.log(`server started on http://localhost:${port}`);
 });

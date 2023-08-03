@@ -4,7 +4,7 @@
  * Hides the given element by setting `display: none`.
  * @param {HTMLElement} element The element to hide
  */
-function hideElement(element) {
+ function hideElement(element) {
   element.style.display = "none";
 }
 
@@ -39,7 +39,7 @@ function showVideoCall() {
 let otherPerson;
 
 const username = prompt("What's your name?", `user${Math.floor(Math.random() * 100)}`);
-const socketUrl = `wss://${location.host}/ws`;
+const socketUrl = `ws://${location.host}/ws`;
 const socket = new WebSocket(socketUrl);
 
 /**

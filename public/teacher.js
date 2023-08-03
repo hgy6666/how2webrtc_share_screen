@@ -4,7 +4,7 @@
  * Hides the given element by setting `display: none`.
  * @param {HTMLElement} element The element to hide
  */
-function hideElement(element) {
+ function hideElement(element) {
   element.style.display = "none";
 }
 
@@ -38,8 +38,8 @@ function showVideoCall() {
 /** @type {string} */
 let otherPerson;
 
-const username = `teacher${Math.floor(Math.random() * 100)}`;// prompt("What's your name?", `user${Math.floor(Math.random() * 100)}`);
-const socketUrl = `wss://${location.host}/ws`;
+const username = 'teacher'; // `teacher${Math.floor(Math.random() * 100)}`;// prompt("What's your name?", `user${Math.floor(Math.random() * 100)}`);
+const socketUrl = `ws://${location.host}/ws`;
 const socket = new WebSocket(socketUrl);
 
 /**
@@ -92,6 +92,8 @@ async function handleMessage(message) {
 
     case "webrtc_offer":
       console.log("received webrtc offer");
+      otherPerson = message.otherPerson;
+      showVideoCall();
       await webrtc.setRemoteDescription(message.offer);
 
       const answer = await webrtc.createAnswer();
@@ -107,6 +109,11 @@ async function handleMessage(message) {
     case "webrtc_answer":
       console.log("received webrtc answer");
       await webrtc.setRemoteDescription(message.answer);
+      break;
+    
+    case "webrtc_close":
+      console.log("close webrtc");
+      closeHandler();
       break;
 
     default:
@@ -164,5 +171,16 @@ callButton.addEventListener("click", async () => {
     otherPerson,
   });
 });
+
+function closeHandler() {
+  if (webrtc) {
+    const localVideo = document.getElementById("remote-video");
+    localVideo.srcObject && localVideo.srcObject.getTracks().forEach(v => {
+      v.stop();
+    });
+    localVideo.srcObject = null;
+    hideVideoCall();
+  }
+}
 
 hideVideoCall();

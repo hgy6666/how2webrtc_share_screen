@@ -8,6 +8,11 @@ interface StartCallWebSocketMessage {
   otherPerson: string;
 }
 
+interface CloseCallWebSocketMessage {
+  channel: "webrtc_close";
+  otherPerson: string;
+}
+
 interface WebRTCIceCandidateWebSocketMessage {
   channel: "webrtc_ice_candidate";
   candidate: RTCIceCandidate;
@@ -27,7 +32,7 @@ interface WebRTCAnswerWebSocketMessage {
 }
 
 type WebSocketCallMessage =
-  StartCallWebSocketMessage
+  StartCallWebSocketMessage | CloseCallWebSocketMessage
   | WebRTCIceCandidateWebSocketMessage
   | WebRTCOfferWebSocketMessage
   | WebRTCAnswerWebSocketMessage;

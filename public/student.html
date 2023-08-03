@@ -19,6 +19,20 @@
           transform: translate(-50%, -50%);
         }
 
+        .close-btn {
+          position: absolute;
+          top: 60%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+          color: white;
+          background-color: black;
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
         #call-button {
           padding: 1rem 2rem;
           border: none;
@@ -58,7 +72,8 @@
   </head>
   <body>
     <h1>学生端</h1>
-    <!-- <button id="call-button" class="centered">Call someone</button> -->
+    <button id="call-button" class="centered">Call someone</button>
+    <button id="stop-button" class="close-btn">Stop</button>
 
     <div id="video-container" class="centered">
       <div id="videos">
