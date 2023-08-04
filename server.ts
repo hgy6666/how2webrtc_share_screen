@@ -6,7 +6,6 @@ import * as expressWs from "express-ws";
 import * as WebSocket from "ws";
 import { createServer } from "http";
 
-
 interface User {
   socket: WebSocket;
   name: string;
@@ -36,8 +35,8 @@ function findUserByName(name: string): User | undefined {
  * @param sender The person originally sending this message
  * @param message The received message
  */
-function forwardMessageToOtherPerson(sender: User, message: WebSocketCallMessage): void {
-  const receiver = findUserByName(message.otherPerson);
+function forwardMessage(sender: User, message: WebSocketCallMessage): void {
+  const receiver = findUserByName(message.shareCode);
   if (!receiver) {
     // in case this user doesn't exist, don't do anything
     return;
@@ -45,7 +44,7 @@ function forwardMessageToOtherPerson(sender: User, message: WebSocketCallMessage
 
   const json = JSON.stringify({
     ...message,
-    otherPerson: sender.name,
+    shareCode: sender.name,
   });
 
   receiver.socket.send(json);
@@ -69,28 +68,28 @@ function handleMessage(socket: WebSocket, message: WebSocketMessage): void {
       break;
 
     case "start_call":
-      console.log(`${sender.name} started a call with ${message.otherPerson}`);
-      forwardMessageToOtherPerson(sender, message);
+      console.log(`${sender.name} started a call with ${message.shareCode}`);
+      forwardMessage(sender, message);
       break;
 
     case "webrtc_ice_candidate":
       console.log(`received ice candidate from ${sender.name}`);
-      forwardMessageToOtherPerson(sender, message);
+      forwardMessage(sender, message);
       break;
 
     case "webrtc_offer":
       console.log(`received offer from ${sender.name}`);
-      forwardMessageToOtherPerson(sender, message);
+      forwardMessage(sender, message);
       break;
 
     case "webrtc_answer":
       console.log(`received answer from ${sender.name}`);
-      forwardMessageToOtherPerson(sender, message);
+      forwardMessage(sender, message);
       break;
 
     case "webrtc_close":
       console.log(`received answer from ${sender.name}`);
-      forwardMessageToOtherPerson(sender, message);
+      forwardMessage(sender, message);
       break;
 
     default:
@@ -137,7 +136,7 @@ const wsApp = expressWs(app, server).app;
 wsApp.ws("/ws", handleSocketConnection);
 
 // start the server
-const port = 443; // process.env.PORT || 
+const port = 443; // process.env.PORT
 server.listen(port, '0.0.0.0', () => {
   console.log(`server started on http://localhost:${port}`);
 });

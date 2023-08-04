@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>WebRTC demo</title>
+<title>Share Screen</title>
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <head>
   <style type="text/css">
@@ -13,24 +13,32 @@
       margin: 1em;
       font-size: 14px;
     }
+
+    .main-content {
+      display: flex;
+      justify-items: flex-start;
+    }
+
+    .model-container {
+      border: 1px solid black;
+      border-radius: 5px;
+      width: 100px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 10px 10px 0;
+    }
   </style>
 </head>
 
 <body>
   <section>
-    <h1>视频1v1</h1>
-    <ul>
-      <li>
-        <a href="./web.html">用户端</a>
-      </li>
-    </ul>
-  </section>
-  <section>
-    <h1>屏幕分享1v1</h1>
-    <ul>
-      <li><a href="./student.html">学生端</a></li>
-      <li><a href="./teacher.html">教师端</a></li>
-    </ul>
+    <h1>Share Screen</h1>
+    <div class="main-content">
+      <a class="model-container" href="./share.html">投屏</a>
+      <a class="model-container" href="./screen.html">显示屏</a>
+    </div>
   </section>
 </body>
 

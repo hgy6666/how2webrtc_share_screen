@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style type="text/css">
+        html, body {
+          margin: 0;
+          font-size: 14px;
+          width: 100%;
+          height: 100%;
+          background-image: url('./assets/background.jpg');
+        }
+
+        #video-container {
+          width: 100vw;
+          height: 100vh;
+        }
+
+        .content {
+          width: 100%;
+          height: 100%;
+        }
+
+        .code-container {
+          padding-left: 10%;
+          width: 300px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .code-content {
+          background: #b1b5b2;
+          opacity: 0.8;
+          width: 100%;
+          height: 60%;
+          border-radius: 10px;
+          padding: 5rem 1rem 2rem 1rem;
+          display:flex;
+          flex-flow: column;
+          justify-content: space-between;
+        }
+
+        .code-title {
+          font-size: 2rem;
+          text-align: center;
+          padding-bottom: 5px;
+        }
+
+        .description {
+          font-size: 1rem;
+          padding-top: 8px;
+        }
+      </style>
+  </head>
+  <body>
+    <div class="content" id="static-page">
+      <div class="code-container">
+        <div class="code-content">
+          <div>
+            <div class="code-title">投屏码</div>
+            <div class="code-title" id="unique-code">XXXX</div>
+          </div>
+          <div>
+            <div class="description">投屏步骤</div>
+            <div class="description">1. 浏览器输入网址：https://iot-warp-cpe.cn-shanghai.aliyuncs.com/share.html</div>
+            <div class="description">2. 输入投屏码，一键投屏</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <video id="video-container" autoplay muted playsinline></video>
+
+    <script type="text/javascript" src="screen.js"></script>
+  </body>
+</html>
