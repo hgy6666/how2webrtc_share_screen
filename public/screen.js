@@ -171,7 +171,7 @@
     username = generateUniqueId();
     document.getElementById("unique-code").innerHTML = username;
   
-    const socketUrl = `ws://${location.host}/ws`;
+    const socketUrl = `wss://${location.host}/ws`;
     socket = new WebSocket(socketUrl);
     socket.addEventListener("open", () => {
       console.log("websocket connected");

@@ -5,30 +5,30 @@ interface LoginWebSocketMessage {
 
 interface StartCallWebSocketMessage {
   channel: "start_call";
-  otherPerson: string;
+  shareCode: string;
 }
 
 interface CloseCallWebSocketMessage {
   channel: "webrtc_close";
-  otherPerson: string;
+  shareCode: string;
 }
 
 interface WebRTCIceCandidateWebSocketMessage {
   channel: "webrtc_ice_candidate";
   candidate: RTCIceCandidate;
-  otherPerson: string;
+  shareCode: string;
 }
 
 interface WebRTCOfferWebSocketMessage {
   channel: "webrtc_offer";
   offer: RTCSessionDescription;
-  otherPerson: string;
+  shareCode: string;
 }
 
 interface WebRTCAnswerWebSocketMessage {
   channel: "webrtc_answer";
   answer: RTCSessionDescription;
-  otherPerson: string;
+  shareCode: string;
 }
 
 type WebSocketCallMessage =

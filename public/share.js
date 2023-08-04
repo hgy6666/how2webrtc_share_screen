@@ -24,7 +24,7 @@
   let shareCode;
   
   const username = `shareuser${Math.floor(Math.random() * 100)}`;
-  const socketUrl = `ws://${location.host}/ws`;
+  const socketUrl = `wss://${location.host}/ws`;
   const socket = new WebSocket(socketUrl);
   
   /**
