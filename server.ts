@@ -137,7 +137,7 @@ const wsApp = expressWs(app, server).app;
 wsApp.ws("/ws", handleSocketConnection);
 
 // start the server
-const port = 4000; // process.env.PORT || 
+const port = 443; // process.env.PORT || 
 server.listen(port, '0.0.0.0', () => {
   console.log(`server started on http://localhost:${port}`);
 });
